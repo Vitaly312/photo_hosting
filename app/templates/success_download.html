@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-center mb-3">
+    <div class="alert alert-success" role="alert">
+        Фото успешно загружено. Чтобы открыть его, перейдите по ссылке: <br>
+        <a href="http://{{request.host}}{{uri}}">{{request.host}}{{uri}}</a>
+    </div>
+</div>
+<div class='container text-center mb-7'>
+  Вернуться на <a href="/" class="alert-link">главную страницу</a>
+</div>
+{% endblock %}

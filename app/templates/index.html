@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <!--<div class="title">
+        <h1>Загрузите фото</h1>
+    </div>-->
+    <form action='' method='post' enctype=multipart/form-data>
+        <!--<div class="dropzone">
+            <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+            <input type="file" class="upload-input" />
+        </div>-->
+        {{form.csrf_token()}}
+        <div class='mb-3 col-10-sm'>
+            <label for="formFile" class="form-label">Выберите фотографию <span class='form-text'>(.png, .jpg, .jpeg)</span>:</label>
+            {{form.photo(class_='form-control')}}<!--<input class="form-control" type="file" name="photo" multiple>-->
+            <div class='form-text'>
+                Для того, чтобы загрузить сразу несколько фотографий, удерживайте клавишу Ctrl при выборе файлов
+            </div>
+        </div>
+        {% for field in form if field.name in ["description", "storage_time"] %}
+        {% if field.errors %}
+            <div class='mb-3 has-validation'>
+                {{field.label(class_='form-label')}}
+                {{field(class_='form-control is-invalid')}}
+                {% for error in field.errors %}
+    		      <div class="invalid-feedback">{{ error }}</div>
+    	       {% endfor %}
+            
+            </div>
+        {% else %}
+            <div class='mb-3'>
+                {{field.label(class_='form-label')}}
+                {{field(class_='form-control')}}            
+            </div>
+        {% endif %}
+        {% endfor %}
+            {% for message in get_flashed_messages() %}
+        <div class='mb-3'>
+            <div class="alert alert-danger" role="alert">{{message}}</div>
+        </div>
+    {% endfor %}
+        {{form.submit(class='btn')}}
+    </form>
+</div>
+{% endblock %}

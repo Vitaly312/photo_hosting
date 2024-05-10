@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if photo_info['has_photo'] %}
+<div class='mb-3'>
+<div id="carousel" class="carousel slide">
+  <div class="carousel-inner">
+      {% for url in photo_info['photo_urls'] %}
+    <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+      <img src="{{url}}" class="d-block w-100" alt="Photo {{url}}">
+    </div>
+      {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+  </button>
+</div>
+</div>
+{% if photo_info.get('description') %}
+    <div class='mb-3'>
+        <div class='container text-center'><h2>Описание</h2></div>
+        <p>{{photo_info['description']}}</p>
+    </div>
+{% endif %}
+<div class="alert alert-danger" role="alert">
+  Фото будет удалено {{photo_info["must_be_deleted_at"]}}
+</div>
+{% else %}
+<div class='mb-3'>
+    <img src='/{{photo_info["photo_urls"][0]}}' width=100%>
+</div>
+<div class='mb-3'>
+    <div class="alert alert-danger" role="alert">По этой ссылке фотография недоступна</div>
+</div>
+{% endif %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+{% endblock %}
