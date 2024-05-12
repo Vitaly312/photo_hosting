@@ -1,0 +1,13 @@
+services:
+  app:
+    build: ./backend/
+    command: gunicorn --bind 0.0.0.0:5000 main:app
+    restart: on-failure
+    expose:
+      - 5000
+  nginx:
+    build: ./nginx/
+    ports:
+      - 6162:80
+    depends_on:
+      - app

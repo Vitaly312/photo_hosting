@@ -2,8 +2,10 @@
 {% block content %}
 <div class="container text-center mb-3">
     <div class="alert alert-success" role="alert">
-        Фото успешно загружено. Чтобы открыть его, перейдите по ссылке: <br>
-        <a href="http://{{request.host}}{{uri}}">{{request.host}}{{uri}}</a>
+        Фото успешно загружено. Чтобы открыть его, перейдите по требуемой ссылке: <br>
+        {% for uri in photo_urls %}
+            <a href="http://{{request.host}}{{uri}}">{{request.host}}{{uri}}</a><br>
+        {% endfor %}
     </div>
 </div>
 <div class='container text-center mb-7'>
