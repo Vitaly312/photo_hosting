@@ -6,7 +6,7 @@ class Config:
             'func': 'app.utils:delete_deprecated_photos',
             'args': (),
             'trigger': 'interval',
-            'seconds': 10#60 * 60 * 24
+            'seconds': 60 * 60 * 24
         }
     ]
     SCHEDULER_API_ENABLED = True
