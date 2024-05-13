@@ -3,6 +3,8 @@ services:
     build: ./backend/
     command: gunicorn --bind 0.0.0.0:5000 main:app
     restart: on-failure
+    volumes:
+      - photo_storage:/usr/src/app/photo_storage/
     expose:
       - 5000
   nginx:
@@ -11,3 +13,5 @@ services:
       - 6162:80
     depends_on:
       - app
+volumes:
+  photo_storage:

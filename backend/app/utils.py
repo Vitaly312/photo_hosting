@@ -12,8 +12,8 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 ALLOWED_CHARS = (string.ascii_uppercase + string.ascii_lowercase 
         + string.digits)
 
-photo_folder = Path(__file__).parent / 'photo_storage'
-print(photo_folder)
+photo_folder = Path(__file__).parent.parent / 'photo_storage'
+
 def generate_random_id(count: int = 20) -> str:
     text = [random.choice(ALLOWED_CHARS) for _ in range(count)]
     return ''.join(text)
